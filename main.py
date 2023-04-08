@@ -40,14 +40,12 @@ MORSE_CODE_CHART = {
 
 def get_user_input():
     while True:
-        valid_string = True
         user_input = input("Please input the text that you want output as Morse Code: ").upper()
-        for char in user_input:
-            if char not in MORSE_CODE_CHART:
-                print(f"Sorry, {char} cannot be converted to morse code. Please try again")
-                valid_string = False
-        if valid_string:
+        if set(user_input).issubset(set(MORSE_CODE_CHART.keys())):
             return user_input
+        else:
+            print("\nSorry, the input contains characters that cannot be converted to Morse code."
+                  " Please try again using only the characters: A-Z, a-z and 0-9.\n")
 
 
 def text_to_morse(s):
